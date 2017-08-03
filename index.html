@@ -60,17 +60,17 @@
         <div>
         # if(data.bars) { #
             # var tmpIndex = data.parent().selectedBarIndex #
-            # var tmpWidth #
+            # var tmpPercent #
             # var progressClass = [] #
             # var activeClass = [] #
             # for(var x = 0; x< data.bars.length; x++) { #
-                # tmpWidth = data.bars[x] > 100? 100: data.bars[x] #
+                # tmpPercent = data.bars[x] > data.limit ? 100: parseInt(data.bars[x] / data.limit * 100) #
                 # if(data.bars[x] > data.limit) { progressClass[x] = 'danger' #
                 # } else {progressClass[x] = 'info'} #
                 # if(tmpIndex == x) activeClass[x] = 'active' #
             <div class="progress">
-                <span class="progress-percent text-center #: activeClass[x] #">#: data.bars[x] #%</span>
-                <p class="progress-bar progress-bar-striped #: activeClass[x] # progress-bar-#: progressClass[x]#" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: #: tmpWidth #%">
+                <span class="progress-percent text-center #: activeClass[x] #">#: tmpPercent #% <span class="hidden1">: #: data.bars[x] # / #: data.limit#</span></span>
+                <p class="progress-bar progress-bar-striped #: activeClass[x] # progress-bar-#: progressClass[x]#" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: #: tmpPercent #%">
                 </p>
             </div>
             # } #

@@ -12,6 +12,7 @@ ready(function() {
                 if (request.status >= 200 && request.status < 400) {
                     // Success!
                     var data = JSON.parse(request.responseText);
+                    //data.limit = 100;
                     viewModel.set('data', data);
                     var bars = [];
                     for(var x = 0; x< data.bars.length; x++) {
@@ -20,7 +21,8 @@ ready(function() {
                     viewModel.set('bars', bars);
                     viewModel.set('selectedBar', bars[0]);
                     viewModel.set('selectedBarIndex',0);
-                    document.querySelectorAll('.progress-bar.active')[0].setAttribute('style','width:' + data.bars[0] + '%');
+
+                    document.querySelectorAll('.progress-bar.active')[0].setAttribute('style','width:' + (data.bars[0] / data.limit * 100) + '%');
                 } else {
                     // We reached our target server, but it returned an error
 
@@ -50,9 +52,10 @@ ready(function() {
 
             var el = document.querySelectorAll('.progress-bar.active')[0];
             var className = 'progress-bar-danger';
+            var tmpPercent = parseInt( bars[selectedBarIndex] / this.get('data.limit') * 100);
 
-            el.setAttribute('style','width:' + bars[selectedBarIndex] + '%');
-            document.querySelectorAll('.progress-percent.active')[0].innerHTML = bars[selectedBarIndex] + '%';
+            el.setAttribute('style','width:' + tmpPercent + '%');
+            document.querySelectorAll('.progress-percent.active')[0].innerHTML = tmpPercent + '% <span class="hidden1">: ' + bars[selectedBarIndex] + '/' + this.get('data.limit') + '</span>';
             if(bars[selectedBarIndex] > this.get('data.limit')) {
                 if (el.classList)
                     el.classList.add(className);
