@@ -4,4 +4,3 @@ Online Exam For Singtel
 2. Libraries / Frameworks
     a. Kendo UI
     b. Bootstrap
-3. Currently Implementing TDD
