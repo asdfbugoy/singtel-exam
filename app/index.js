@@ -4,7 +4,6 @@ ready(function() {
         name: 'Francis Samande Declaro',
         title: 'Progress Bar Demo',
         data: {},
-        previousTotal: 0,
         pageLoad: function() {
             var request = new XMLHttpRequest();
             request.open('GET', endPointUrl, true);
@@ -21,7 +20,6 @@ ready(function() {
                     viewModel.set('bars', bars);
                     viewModel.set('selectedBar', bars[0]);
                     viewModel.set('selectedBarIndex',0);
-                    viewModel.set('previousTotal', data.bars[0]);
                     document.querySelectorAll('.progress-bar.active')[0].setAttribute('style','width:' + data.bars[0] + '%');
                 } else {
                     // We reached our target server, but it returned an error
