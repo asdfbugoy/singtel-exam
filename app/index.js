@@ -1,5 +1,5 @@
 ready(function() {
-    var endPointUrl = "http://pb-api.herokuapp.com/bars";
+    var endPointUrl = "https://pb-api.herokuapp.com/bars";
     var viewModel = new kendo.observable({
         name: 'Francis Samande Declaro',
         title: 'Progress Bar Demo',
